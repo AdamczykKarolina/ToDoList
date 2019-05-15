@@ -1,3 +1,12 @@
+.container::after {
+	background-image: url(photos/flowers-3956074_1920.jpg);
+	opacity: 0.5;
+	position: absolute;
+	z-index: -1;
+}
+
+
+
 .container {
 	margin: 10vh 10vh;
 	background-image: url(photos/flowers-3956074_1920.jpg);
@@ -7,13 +16,15 @@
 	font-family: 'Indie Flower', cursive;
 }
 
+
+
 /*change list task color*/
 .alternativeTask {
-	color: green;
+	color: darkgreen;
 }
 
 .alternative {
-	color: red;
+	color: darkred;
 }
 
 
@@ -26,12 +37,14 @@ h1 {
 
 ul li {
 	color: #555;
-	font-size: 1.5em;
+	font-size: 2em;
 	margin-top: 0.5em;
+	padding: 5px;
 	border-bottom: #555 solid 3px;
 	margin-left: 15%;
 	width: 70%;
 	list-style: none;
+	font-weight: 600;
 
 }
 
@@ -58,7 +71,8 @@ button img:hover {
 
 input {
 	width: 35%;
-	margin-left: 8%;
+	height: 35px;
+	margin-left: 3%;
 	font-size: 1em;
 	font-family: 'Indie Flower', cursive;
 	border: 2px solid pink;
