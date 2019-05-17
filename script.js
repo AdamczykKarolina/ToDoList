@@ -135,6 +135,8 @@
    	var deleteButton = document.createElement('button');
 
    	deleteButton.textContent = 'delete';
+   	deleteButton.classList.add('remove');
+   	deleteButton.dataset.id == 'task-list'
 
 
 
@@ -148,48 +150,55 @@
    	list.appendChild(newElement);
    }
 
-   //
-   //      delete button
-   //      $deleteButton.addEventListener("click", function (del) if (e.target.elementName.contains('delete')) {
-   //      var element = e.target.parentElement;
-   //      element.parentElement.removeChild(element);
-   //      })
-   //      );
-   //      }
-
-   function addButtonClickHandler() {
-   	var newTask = $newDoElement.value;
-
-   	if (newTask) {
-   		axios.post('http://195.181.210.249:3000/todo/', {
-   				title: newTask,
-   				author: 'Karolina'
-   			})
-   			.then(function () {
-   				$taskList.innerHTML = '';
-   				getTodos();
-   			})
-
-   		$newDoElement.value = '';
-   	}
-   }
-
-   //   function addButtonClickHandler() {
-   //   	var editTask = $newDoElement.value;
-   //
-   //   	if (editTask) {
-   //   		axios.put('http://195.181.210.249:3000/todo/task-list', {
-   //   				title: editTask,
-   //   				author: 'Karolina'
-   //   			})
-   //   			.then(function () {
-   //   				$taskList.innerHTML = '';
-   //   				putEdit();
-   //   			})
-   //
-   //   		$newDoElement.value = '';
-   //   	}
+   //   deleteButton 
+   //   $deleteButton.addEventListener("click", function (del) if (e.target.elementName.contains('delete')) {
+   //   var element = e.target.parentElement;
+   //   element.parentElement.removeChild(element);
+   //   })
+   //   );
    //   }
 
 
-   document.addEventListener('DOMContentLoaded', main);
+   function listClickManager(event) {
+   	if (event.target.classList.contains('delete')) {
+   		function deleteElement('task-list');
+   	}
+
+
+
+   	function addButtonClickHandler() {
+   		var newTask = $newDoElement.value;
+
+   		if (newTask) {
+   			axios.post('http://195.181.210.249:3000/todo/', {
+   					title: newTask,
+   					author: 'Karolina'
+   				})
+   				.then(function () {
+   					$taskList.innerHTML = '';
+   					getTodos();
+   				})
+
+   			$newDoElement.value = '';
+   		}
+   	}
+
+   	function addButtonClickHandler() {
+   		var editTask = $newDoElement.value;
+
+   		if (editTask) {
+   			axios.put('http://195.181.210.249:3000/todo/task-list', {
+   					title: editTask,
+   					author: 'Karolina'
+   				})
+   				.then(function () {
+   					$taskList.innerHTML = '';
+   					putEdit();
+   				})
+
+   			$newDoElement.value = '';
+   		}
+   	}
+
+
+   	document.addEventListener('DOMContentLoaded', main);
