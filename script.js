@@ -14,6 +14,7 @@
 
 
    }
+
    asyncAwaitGetTodos();
    getTodos();
 
@@ -27,6 +28,7 @@
    		})
    		.catch(console.error)
    }
+
 
    async function asyncAwaitGetTodos() {
    	try {
@@ -69,20 +71,28 @@
    }
 
    function listClickManager(event) {
+
    	if (event.target.classList.contains('edit')) {
    		editClickHandler(event);
    	} else if (event.target.classList.contains('accept')) {
    		acceptChangeHandler(event);
-
    	} else {
    		if (event.target.tagName === 'LI') {
    			event.target.classList.toggle('alternativeTask');
    		} else {
    			event.target.parentElement.classList.toggle('alternative');
+   		} {
+   			event.target.parentElement.classList.toggle('delete');
    		}
+
    	}
    }
 
+//      list.addEventListener("click", function (ev) {
+ 			//      	if (ev.target.classList.contains('delete')) {
+ 			//      		list.removeChild(ev.target.parentNode);
+ 			//      	}
+ 			//      });
 
    function acceptChangeHandler(event) {
    	var $changeInput = event.target.parentElement.getElementsByTagName('input')[0];
@@ -135,8 +145,8 @@
    	var deleteButton = document.createElement('button');
 
    	deleteButton.textContent = 'delete';
-   	deleteButton.classList.add('remove');
-   	deleteButton.dataset.id == 'task-list'
+   	deleteButton.classList.add('delete');
+   	deleteButton.dataset.id = 'delete'
 
 
 
@@ -158,47 +168,54 @@
    //   );
    //   }
 
+   //   function listClickManager(event) {
+   //   	if (event.target.classList.contains('delete'));
+   //
+   //   	function deleteElement(delete) {
+   //   		var element = document.getElementById(delete)
+   //   		delete.parentNode.removeChild(remove)
+   //   	}
+   //   	element.parentNode.removeChild(remove)
+   //
+   //   }
+   //   function listClickManager(event) {
+   //   	if (event.target.classList.contains('delete'))
+   //
+   //   	{
+   //   		document.getElementById("delete").className = "delete";
+   //   		//   		function deleteElement(delete)
+   //   	}
+   function addButtonClickHandler() {
+   	var newTask = $newDoElement.value;
 
-   function listClickManager(event) {
-   	if (event.target.classList.contains('delete')) {
-   		function deleteElement('task-list');
+   	if (newTask) {
+   		axios.post('http://195.181.210.249:3000/todo/', {
+   				title: newTask,
+   				author: 'Karolina'
+   			})
+   			.then(function () {
+   				$taskList.innerHTML = '';
+   				getTodos();
+   			})
+
+   		$newDoElement.value = '';
    	}
+   }
 
-
-
-   	function addButtonClickHandler() {
-   		var newTask = $newDoElement.value;
-
-   		if (newTask) {
-   			axios.post('http://195.181.210.249:3000/todo/', {
-   					title: newTask,
-   					author: 'Karolina'
-   				})
-   				.then(function () {
-   					$taskList.innerHTML = '';
-   					getTodos();
-   				})
-
-   			$newDoElement.value = '';
-   		}
-   	}
-
-   	function addButtonClickHandler() {
-   		var editTask = $newDoElement.value;
-
-   		if (editTask) {
-   			axios.put('http://195.181.210.249:3000/todo/task-list', {
-   					title: editTask,
-   					author: 'Karolina'
-   				})
-   				.then(function () {
-   					$taskList.innerHTML = '';
-   					putEdit();
-   				})
-
-   			$newDoElement.value = '';
-   		}
-   	}
-
-
-   	document.addEventListener('DOMContentLoaded', main);
+   //      function addButtonClickHandler() {
+   //      	var editTask = $taskList.value;
+   //
+   //      	if (editTask) {
+   //      		axios.put('http://195.181.210.249:3000/todo/task-list', {
+   //      				title: editTask,
+   //      				author: 'Karolina'
+   //      			})
+   //      			.then(function () {
+   //      				$taskList.innerHTML = '';
+   //      				putEdit();
+   //      			})
+   //
+   //      		$newDoElement.value = '';
+   //      	}
+   //      }
+   document.addEventListener('DOMContentLoaded', main);
